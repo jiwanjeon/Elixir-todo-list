@@ -1,7 +1,4 @@
-+./0defmodule TodoPractice.Repo.Migrations.Creat['0[0[0
-;':?;/
-;
-eTodos do
+defmodule TodoPractice.Repo.Migrations.CreateTodos do
   use Ecto.Migration
 
   def change do
@@ -14,4 +11,3 @@ eTodos do
     end
   end
 end
--9[p[\\\]]

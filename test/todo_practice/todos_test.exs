@@ -35,7 +35,12 @@ defmodule TodoPractice.TodosTest do
 
     test "update_todo/2 with valid data updates the todo" do
       todo = todo_fixture()
-      update_attrs = %{complete: false, priority: "some updated priority", title: "some updated title"}
+
+      update_attrs = %{
+        complete: false,
+        priority: "some updated priority",
+        title: "some updated title"
+      }
 
       assert {:ok, %Todo{} = todo} = Todos.update_todo(todo, update_attrs)
       assert todo.complete == false

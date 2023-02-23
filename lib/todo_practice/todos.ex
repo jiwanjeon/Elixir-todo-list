@@ -22,8 +22,9 @@ defmodule TodoPractice.Todos do
   end
 
   def where_priority(priority) do
-    query = from t in Todo,
-      where: t.priority == ^priority
+    query =
+      from t in Todo,
+        where: t.priority == ^priority
 
     Repo.all(query)
   end

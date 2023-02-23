@@ -6,9 +6,10 @@ defmodule TodoPracticeWeb.TodoLive.Index do
 
   @impl true
   def mount(_params, _session, socket) do
-    {:ok, socket
-          |> assign(:filter, "없음")
-          |> assign(:todos, list_todos())}
+    {:ok,
+     socket
+     |> assign(:filter, "없음")
+     |> assign(:todos, list_todos())}
   end
 
   @impl true
@@ -35,27 +36,31 @@ defmodule TodoPracticeWeb.TodoLive.Index do
   end
 
   def handle_event("filter_all", _value, socket) do
-    {:noreply, socket
-    |> assign(:filter, "모두")
-    |> assign(:todos, list_todos())}
+    {:noreply,
+     socket
+     |> assign(:filter, "모두")
+     |> assign(:todos, list_todos())}
   end
 
   def handle_event("filter_high", _value, socket) do
-    {:noreply, socket
-    |> assign(:filter, "High")
-    |> assign(:todos, TodoPractice.Todos.where_priority("High"))}
+    {:noreply,
+     socket
+     |> assign(:filter, "High")
+     |> assign(:todos, TodoPractice.Todos.where_priority("High"))}
   end
 
   def handle_event("filter_middle", _value, socket) do
-    {:noreply, socket
-    |> assign(:filter, "Middle")
-    |> assign(:todos, TodoPractice.Todos.where_priority("Middle"))}
+    {:noreply,
+     socket
+     |> assign(:filter, "Middle")
+     |> assign(:todos, TodoPractice.Todos.where_priority("Middle"))}
   end
 
   def handle_event("filter_low", _value, socket) do
-    {:noreply, socket
-    |> assign(:filter, "Low")
-    |> assign(:todos, TodoPractice.Todos.where_priority("Low"))}
+    {:noreply,
+     socket
+     |> assign(:filter, "Low")
+     |> assign(:todos, TodoPractice.Todos.where_priority("Low"))}
   end
 
   @impl true
