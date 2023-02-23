@@ -1,0 +1,64 @@
+<h1>Listing Todos</h1>
+
+<%= if @live_action in [:new, :edit] do %>
+  <.modal return_to={Routes.todo_index_path(@socket, :index)}>
+    <.live_component
+      module={TodoPracticeWeb.TodoLive.FormComponent}
+      id={@todo.id || :new}
+      title={@page_title}
+      action={@live_action}
+      todo={@todo}
+      return_to={Routes.todo_index_path(@socket, :index)}
+    />
+  </.modal>
+<% end %>
+
+<div>
+<h1 style="color: red;" align="center">
+  <%= @filter %>
+</h1>
+</div>
+<div class="all">
+  <button id="getAllTodosButton" phx-click="filter_all">Get All Todos</button>
+</div>
+
+<div class="getHighTodos">
+  <button id="getAllTodosButton" phx-click="filter_high">Get High-Priority Todos</button>
+</div>
+
+<div class="getMiddleTodos">
+  <button id="getAllTodosButton" phx-click="filter_middle">Get Middle-Priority Todos</button>
+</div>
+
+<div class="getLowTodos">
+  <button id="getAllTodosButton" phx-click="filter_low">Get Low-Priority Todos</button>
+</div>
+
+<table>
+  <thead>
+    <tr>
+      <th>Title</th>
+      <th>Complete</th>
+      <th>Priority</th>
+
+      <th></th>
+    </tr>
+  </thead>
+  <tbody id="todos">
+    <%= for todo <- @todos do %>
+      <tr id={"todo-#{todo.id}"}>
+        <td align="center"><%= todo.title %></td>
+        <td align="center"><%= todo.complete %></td>
+        <td align="center"><%= todo.priority %></td>
+
+        <td>
+          <span><%= live_redirect "Show", to: Routes.todo_show_path(@socket, :show, todo) %></span>
+          <span><%= live_patch "Edit", to: Routes.todo_index_path(@socket, :edit, todo) %></span>
+          <span><%= link "Delete", to: "#", phx_click: "delete", phx_value_id: todo.id, data: [confirm: "Are you sure?"] %></span>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<span><%= live_patch "New Todo", to: Routes.todo_index_path(@socket, :new) %></span>
