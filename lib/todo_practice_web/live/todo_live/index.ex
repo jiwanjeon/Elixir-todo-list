@@ -38,7 +38,7 @@ defmodule TodoPracticeWeb.TodoLive.Index do
   def handle_event("filter_all", _value, socket) do
     {:noreply,
      socket
-     |> assign(:filter, "모두")
+     |> assign(:filter, "All")
      |> assign(:todos, list_todos())}
   end
 

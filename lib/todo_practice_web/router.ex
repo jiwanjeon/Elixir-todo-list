@@ -12,6 +12,10 @@ defmodule TodoPracticeWeb.Router do
 
   pipeline :api do
     plug :accepts, ["json"]
+    get "/tesla", TodoPracticeWeb.TeslaController, :get
+    post "/tesla", TodoPracticeWeb.TeslaController, :create
+    put "/tesla", TodoPracticeWeb.TeslaController, :update
+    delete "/tesla", TodoPracticeWeb.TeslaController, :delete
   end
 
   scope "/", TodoPracticeWeb do

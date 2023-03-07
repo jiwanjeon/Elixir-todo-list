@@ -19,7 +19,7 @@ defmodule TodoPracticeWeb.TodoLive.FormComponent do
       socket.assigns.todo
       |> Todos.change_todo(todo_params)
       |> Map.put(:action, :validate)
-
+      
     {:noreply, assign(socket, :changeset, changeset)}
   end
 
