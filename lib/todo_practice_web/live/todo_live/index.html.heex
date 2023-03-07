@@ -36,7 +36,8 @@
 
 <table>
   <thead>
-    <tr>
+    <tr align="center">
+      <th > ID </th>
       <th>Title</th>
       <th>Complete</th>
       <th>Priority</th>
@@ -44,12 +45,13 @@
       <th></th>
     </tr>
   </thead>
-  <tbody id="todos">
+  <tbody id="todos" align="center">
     <%= for todo <- @todos do %>
       <tr id={"todo-#{todo.id}"}>
-        <td align="center"><%= todo.title %></td>
-        <td align="center"><%= todo.complete %></td>
-        <td align="center"><%= todo.priority %></td>
+        <td><%= todo.id %></td>
+        <td><%= todo.title %></td>
+        <td><%= todo.complete %></td>
+        <td><%= todo.priority %></td>
 
         <td>
           <span><%= live_redirect "Show", to: Routes.todo_show_path(@socket, :show, todo) %></span>
@@ -60,5 +62,12 @@
     <% end %>
   </tbody>
 </table>
+
+
+  <select id="todo_id" title="todo[todo_id]">
+    <%= for todo <- @todos do %>
+      <option><%= todo.title %></option>
+    <% end %>
+  </select>
 
 <span><%= live_patch "New Todo", to: Routes.todo_index_path(@socket, :new) %></span>
